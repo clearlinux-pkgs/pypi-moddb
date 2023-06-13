@@ -5,7 +5,7 @@
 #
 Name     : pypi-moddb
 Version  : 0.8.1
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/ae/7d/8d5cf4e2aac9563dc2d6ba6a313aaef89c9f647b7df2e71907971d49e931/moddb-0.8.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ae/7d/8d5cf4e2aac9563dc2d6ba6a313aaef89c9f647b7df2e71907971d49e931/moddb-0.8.1.tar.gz
 Summary  : A scrapper for ModDB Mod and Game pages
@@ -67,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686612124
+export SOURCE_DATE_EPOCH=1686615335
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -77,6 +77,9 @@ export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -
 export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
+pypi-dep-fix.py . toolz
+pypi-dep-fix.py . pyrate-limiter
+pypi-dep-fix.py . beautifulsoup4
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
 export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
@@ -84,6 +87,9 @@ export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+pypi-dep-fix.py . toolz
+pypi-dep-fix.py . pyrate-limiter
+pypi-dep-fix.py . beautifulsoup4
 python3 -m build --wheel --skip-dependency-check --no-isolation
 
 popd
@@ -94,6 +100,9 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-moddb
 cp %{_builddir}/moddb-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-moddb/b9b7e96a5a0c79d28265e29773a0a6887e1671d0 || :
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
+pypi-dep-fix.py %{buildroot} toolz
+pypi-dep-fix.py %{buildroot} pyrate-limiter
+pypi-dep-fix.py %{buildroot} beautifulsoup4
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
