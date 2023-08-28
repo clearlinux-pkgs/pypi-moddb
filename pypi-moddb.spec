@@ -4,10 +4,10 @@
 # Using build pattern: pyproject
 #
 Name     : pypi-moddb
-Version  : 0.8.1
-Release  : 2
-URL      : https://files.pythonhosted.org/packages/ae/7d/8d5cf4e2aac9563dc2d6ba6a313aaef89c9f647b7df2e71907971d49e931/moddb-0.8.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/ae/7d/8d5cf4e2aac9563dc2d6ba6a313aaef89c9f647b7df2e71907971d49e931/moddb-0.8.1.tar.gz
+Version  : 0.9.0
+Release  : 3
+URL      : https://files.pythonhosted.org/packages/05/a2/26d7a6797d335d83dbc66e961eb597a7c661a06524e8b8ad439937568061/moddb-0.9.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/05/a2/26d7a6797d335d83dbc66e961eb597a7c661a06524e8b8ad439937568061/moddb-0.9.0.tar.gz
 Summary  : A scrapper for ModDB Mod and Game pages
 Group    : Development/Tools
 License  : MIT
@@ -15,6 +15,10 @@ Requires: pypi-moddb-license = %{version}-%{release}
 Requires: pypi-moddb-python = %{version}-%{release}
 Requires: pypi-moddb-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
+BuildRequires : pypi(beautifulsoup4)
+BuildRequires : pypi(pyrate_limiter)
+BuildRequires : pypi(requests)
+BuildRequires : pypi(toolz)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -56,10 +60,10 @@ python3 components for the pypi-moddb package.
 
 
 %prep
-%setup -q -n moddb-0.8.1
-cd %{_builddir}/moddb-0.8.1
+%setup -q -n moddb-0.9.0
+cd %{_builddir}/moddb-0.9.0
 pushd ..
-cp -a moddb-0.8.1 buildavx2
+cp -a moddb-0.9.0 buildavx2
 popd
 
 %build
@@ -67,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686615335
+export SOURCE_DATE_EPOCH=1693252231
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -98,7 +102,7 @@ popd
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pypi-moddb
-cp %{_builddir}/moddb-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-moddb/b9b7e96a5a0c79d28265e29773a0a6887e1671d0 || :
+cp %{_builddir}/moddb-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-moddb/d7cb6636a1bcf8b92975627e64baab53f41d09c5 || :
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 pypi-dep-fix.py %{buildroot} toolz
 pypi-dep-fix.py %{buildroot} pyrate-limiter
@@ -121,7 +125,7 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/pypi-moddb/b9b7e96a5a0c79d28265e29773a0a6887e1671d0
+/usr/share/package-licenses/pypi-moddb/d7cb6636a1bcf8b92975627e64baab53f41d09c5
 
 %files python
 %defattr(-,root,root,-)

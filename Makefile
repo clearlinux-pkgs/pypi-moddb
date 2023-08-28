@@ -1,5 +1,5 @@
 PKG_NAME := pypi-moddb
-URL = https://files.pythonhosted.org/packages/ae/7d/8d5cf4e2aac9563dc2d6ba6a313aaef89c9f647b7df2e71907971d49e931/moddb-0.8.1.tar.gz
+URL = https://files.pythonhosted.org/packages/05/a2/26d7a6797d335d83dbc66e961eb597a7c661a06524e8b8ad439937568061/moddb-0.9.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
