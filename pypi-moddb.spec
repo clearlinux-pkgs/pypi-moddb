@@ -7,7 +7,7 @@
 #
 Name     : pypi-moddb
 Version  : 0.11.0
-Release  : 8
+Release  : 9
 URL      : https://files.pythonhosted.org/packages/9b/36/2b403da6865eb9fd82df6b52df2d5d9ba15cdc181b233ecd3dc261fb40fa/moddb-0.11.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/9b/36/2b403da6865eb9fd82df6b52df2d5d9ba15cdc181b233ecd3dc261fb40fa/moddb-0.11.0.tar.gz
 Summary  : A scrapper for ModDB Mod and Game pages
